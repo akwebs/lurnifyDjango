@@ -1,0 +1,471 @@
+{% extends 'web_base.html' %}
+{% load static %}
+{% block css %}
+<style>
+.swiper-slide img {
+    width: 250px;
+}
+</style>
+{% endblock css %}
+{% block content %}
+<!--hero section start Progress on the fingertips!-->
+
+<section class="hero" id="about">
+    <div class="hero__wrapper">
+        <div class="container">
+            <div class="row align-items-lg-center">
+                <div class="col-lg-6 order-2 order-lg-1">
+                    <h1 class="main-heading color-black">{{hero.title}}</h1>
+                    <!-- <p class="paragraph"><span>Lurnify</span><sup>TM</sup> is an LMS that helps you organize
+                            yourself on the daily basis using systematic
+                            algorithms to achieve your goal and desired rank in IITJEE or NEET</p> -->
+                    {{ hero.description | safe}}
+                    <div class="download-buttons">
+                        <a href="{{hero.btn_link}}" class="google-play">
+                            <i class="fad fa-phone-alt"></i>
+                            <div class="button-content">
+                                <h6>GET a call From<span>{{hero.btn_text}}</span></h6>
+                            </div>
+                        </a>
+                        <!-- <a href="#" class="apple-store">
+                            <i class="fab fa-apple"></i>
+                            <div class="button-content">
+                                <h6>GET IT ON <span>Apple Store</span></h6>
+                            </div>
+                            </a> -->
+                    </div>
+                </div>
+                <div class="col-lg-6 order-1 order-lg-2">
+                    <div class="questions-img hero-img">
+                        <img src="{{hero.ImageUrl}}" alt="image">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!--hero section end-->
+
+<!--feature section start-->
+<section class="feature" id="feature">
+    <div class="container">
+        <h2 class="section-heading color-black">Get surprised by amazing features.</h2>
+        <div class="row">
+            {% for feature in features %}
+            <div class="col-lg-3 col-md-6">
+                <div class="feature__box feature__box--{{feature.s_no}}">
+                    <div class="icon icon-{{feature.s_no}}">
+                        <i class="fad {{ feature.icon }}"></i>
+                    </div>
+                    <div class="feature__box__wrapper">
+                        <div class="feature__box--content feature__box--content-{{feature.s_no}}">
+                            <h3>{{feature.heading}}</h3>
+                            {{feature.description | safe}}
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+<!--feature section end-->
+
+<!--video section start-->
+<div class="video" id="video">
+    <div class="video__wrapper">
+        <div class="container">
+            <div class="video__play">
+                <button type="button" data-toggle="modal" data-target="#videoModal">
+                    <i class="fad fa-play"></i>
+                </button>
+                <div class="modal fade" id="videoModal" tabindex="-1" role="dialog" aria-hidden="true">
+                    <div class="modal-dialog modal-dialog-centered" role="document">
+                        <div class="modal-content">
+                            <div class="modal-close">
+                                <button type="button" data-dismiss="modal" aria-label="Close">
+                                    <i class="fas fa-times"></i>
+                                </button>
+                            </div>
+                            <div class="modal-body">
+                                <iframe src="{{video.video_link}}"
+                                    allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="video__background">
+                <img src="{{video.Img_1}}" alt="{{video.img_1_alt}}" class="texture-1">
+                <img src="{{video.Img_2}}" alt="{{video.img_2_alt}}" class="phone">
+                <img src="{{video.Img_3}}" alt="{{video.img_3_alt}}" class="texture-2">
+            </div>
+        </div>
+    </div>
+</div>
+<!--video section end-->
+
+<!--growth section start-->
+<section class="growth" id="growth">
+    <div class="growth__wrapper">
+        <div class="container">
+            <h2 class="section-heading color-black">{{growth.heading}}</h2>
+            <!-- <h1 class="main-heading color-black"><span>How ?</span></h1> -->
+            <div class="row">
+                {% for g in growth_data %}
+                <div class="col-lg-6">
+                    <div class="growth__box">
+                        <div class="icon">
+                            <i class="fad {{g.icon}}"></i>
+                        </div>
+                        <div class="content">
+                            <h3>{{g.heading}}</h3>
+                            {{g.description | safe | default:""}}
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+            <div class="row">
+                <div class="button__wrapper">
+                    <a href="{{growth.btn_1_link}}" class="button">
+                        <span>{{growth.btn_1_text}} <i class="fad fa-long-arrow-right"></i></span>
+                    </a>
+                    <a href="{{growth.btn_2_link}}" class="button">
+                        <span>{{growth.btn_2_text}} <i class="fad fa-long-arrow-right"></i></span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!--growth section end-->
+
+<!--step section start-->
+<section class="step" id="step">
+    <div class="step__wrapper">
+        <div class="container">
+            <h2 class="section-heading color-black">{{step.heading}}</h2>
+            <div class="row">
+                {% for s in steps_data %}
+                <div class="col-lg-4">
+                    <div class="step__box">
+                        <div class="image">
+                            <img src="{{s.ImageUrl}}" alt="image">
+                        </div>
+                        <div class="content">
+                            <h3>{{s.top_heading}}<span>{{s.heading}}</span></h3>
+                            {{s.description | safe}}
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+            <div class="row">
+                <div class="button__wrapper">
+                    <a href="{{step.btn_1_link}}" class="button">
+                        <span>{{step.btn_1_text}} <i class="fad fa-long-arrow-right"></i></span>
+                    </a>
+                    <a href="{{step.btn_2_link}}" class="button">
+                        <span>{{step.btn_2_text}} <i class="fad fa-long-arrow-right"></i></span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!--step section end-->
+
+<!--client section start-->
+<section class="clients-sec" id="feedback">
+    <div class="container">
+        <h2 class="section-heading color-black">{{test.heading}}</h2>
+        <div class="testimonial__wrapper">
+            {% for t in test_data %}
+            <div class="client client-0{{t.s_no}} {% if t.s_no == 1 %} active {% endif %}">
+                <div class="image">
+                    <img src="{{t.ImageUrl}}" alt="{{t.img_alt}}">
+                </div>
+                <div class="testimonial">
+                    <div class="testimonial__wrapper">
+                        <p>{{t.testimonial}}</p>
+                        <h4>— {{t.name}}</h4>
+                        <h4>{{t.rank}}</h4>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+        <div class="clients">
+            <div class="clients__info">
+                <h3>{{test.no_of_testimonial}}+</h3>
+                <p class="paragraph dark">{{test.description | default:""}}</p>
+            </div>
+            <!-- <div class="swiper-container clients-slider">
+                <div class="swiper-wrapper">
+                    <div class="swiper-slide clients-slide">
+                        <a href="#"><img src="{% static 'website_assets/images/client-img.png' %}" alt="image"></a>
+                    </div>
+                    <div class="swiper-slide clients-slide">
+                        <a href="#"><img src="{% static 'website_assets/images/client-img.png' %}" alt="image"></a>
+                    </div>
+                    <div class="swiper-slide clients-slide">
+                        <a href="#"><img src="{% static 'website_assets/images/client-img.png' %}" alt="image"></a>
+                    </div>
+                </div>
+            </div> -->
+        </div>
+    </div>
+</section>
+<!--client section end-->
+
+<!--questions section start-->
+<section class="questions" id="faq">
+    <div class="questions__wrapper">
+        <div class="container">
+            <h2 class="section-heading color-black">{{faq_data.heading}}</h2>
+            <div class="row align-items-lg-start">
+                <div class="col-lg-6 order-2 order-lg-1">
+                    <div id="accordion">
+                        {% for q in faqs %}
+                        <div class="card" id="card-{{ forloop.counter }}">
+                            <div class="card-header" id="heading-{{ forloop.counter }}">
+                                <h5 class="mb-0">
+                                    <button class="btn btn-link" data-toggle="collapse" data-target="#collapse-{{ q.id }}" aria-expanded="true"
+                                        aria-controls="collapse-{{ forloop.counter }}">
+                                        {{q.question | default:""}}
+                                    </button>
+                                </h5>
+                            </div>
+
+                            <div id="collapse-{{q.id}}" class="collapse show" aria-labelledby="heading-1" data-parent="#accordion">
+                                <div class="card-body">
+                                    {{q.answer | safe | default:""}}
+                                </div>
+                            </div>
+                        </div>
+                        {% endfor %}
+                    </div>
+                </div>
+                <div class="col-lg-6 order-1 order-lg-2">
+                    <div class="questions-img">
+                        <img src="{{faq_data.ImageUrl}}" alt="{{faq_data.img_alt}}">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!--questions section end-->
+
+<!--pricing section start-->
+<section class="pricing" id="pricing" style="display: none; visibility: hidden;">
+    <div class="pricing__wrapper">
+        <h2 class="section-heading color-black">Easy pricing plans for your needs.</h2>
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-4">
+                    <div class="pricing__single pricing__single-1">
+                        <div class="icon">
+                            <i class="fad fa-user-graduate"></i>
+                        </div>
+                        <h4>LEARNER</h4>
+                        <h3>$0.00</h3>
+                        <h6>1 to 2 users</h6>
+                        <div class="list">
+                            <ul>
+                                <li>20 polls per month</li>
+                                <li>1 email address</li>
+                                <li>2GB cloud storage</li>
+                                <li class="not-included">No customer support</li>
+                                <li class="not-included">Extra features</li>
+                                <li class="not-included">In-app products</li>
+                            </ul>
+                        </div>
+                        <a href="#" class="button">
+                            <span>GET STARTED <i class="fad fa-long-arrow-right"></i></span>
+                        </a>
+                    </div>
+                </div>
+                <div class="col-lg-4">
+                    <div class="pricing__single pricing__single-2">
+                        <div class="icon">
+                            <i class="fad fa-user-cowboy"></i>
+                        </div>
+                        <h4>COWBOY</h4>
+                        <h3>$10.00</h3>
+                        <h6>3 to 19 users</h6>
+                        <div class="list">
+                            <ul>
+                                <li>20 polls per month</li>
+                                <li>1 email address</li>
+                                <li>2GB cloud storage</li>
+                                <li>No customer support</li>
+                                <li class="not-included">Extra features</li>
+                                <li class="not-included">In-app products</li>
+                            </ul>
+                        </div>
+                        <a href="#" class="button">
+                            <span>GET STARTED <i class="fad fa-long-arrow-right"></i></span>
+                        </a>
+                    </div>
+                </div>
+                <div class="col-lg-4">
+                    <div class="pricing__single pricing__single-3">
+                        <div class="icon">
+                            <i class="fad fa-user-astronaut"></i>
+                        </div>
+                        <h4>ASTRONAUT</h4>
+                        <h3>$20.00</h3>
+                        <h6>20 to 50 users</h6>
+                        <div class="list">
+                            <ul>
+                                <li>20 polls per month</li>
+                                <li>1 email address</li>
+                                <li>2GB cloud storage</li>
+                                <li>No customer support</li>
+                                <li>Extra features</li>
+                                <li>In-app products</li>
+                            </ul>
+                        </div>
+                        <a href="#" class="button">
+                            <span>GET STARTED <i class="fad fa-long-arrow-right"></i></span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!--pricing section end-->
+
+<!--screenshot section start-->
+<section class="screenshot mt-5" id="preview">
+    <div class="screenshot__wrapper">
+        <div class="container">
+            <div class="screenshot__info">
+                <h2 class="section-heading color-black">{{showcase.heading}}</h2>
+                <div class="screenshot-nav">
+                    <div class="screenshot-nav-prev"><i class="fad fa-long-arrow-left"></i></div>
+                    <div class="screenshot-nav-next"><i class="fad fa-long-arrow-right"></i></div>
+                </div>
+            </div>
+        </div>
+        <div class="swiper-container screenshot-slider">
+            <div class="swiper-wrapper">
+                {% for s in showcase_data %}
+                <div class="swiper-slide screenshot-slide">
+                    <img src="{{s.ImageUrl}}" alt="{{s.img_alt}}">
+                    <p class="paragraph">{{s.heading}}</p>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+</section>
+<!--screenshot section end-->
+
+<!--related blog section start-->
+<section class="related-blog blog" style="display: none; visibility: hidden;">
+    <div class="related-blog__wrapper">
+        <h2 class="section-heading color-black">Read latest news from our blog.</h2>
+        <div class="blog__content">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-4">
+                        <a href="blog-single.html">
+                            <div class="blog__single blog__single--1">
+                                <div class="blog__single-image">
+                                    <img src="{% static 'website_assets/images/blog-img-1.png' %}" alt="image">
+                                </div>
+                                <div class="blog__single-info">
+                                    <h3>New features coming in 2020 to our app.</h3>
+                                    <h4>12 <i class="fad fa-comment"></i><span>|</span>Dec 17, 2020</h4>
+                                    <p class="paragraph dark">Suisque metus tortor ultricies ac ligula neced eleifend dales felise morbi nec tempor isvel ultricies lideula. </p>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="col-lg-8">
+                        <a href="blog-single.html">
+                            <div class="blog__single blog__single--2">
+                                <div class="blog__single-image">
+                                    <img src="{% static 'website_assets/images/blog-img-2.png' %}" alt="image">
+                                </div>
+                                <div class="blog__single-info">
+                                    <h3>New features coming in 2020 to our app.</h3>
+                                    <h4>12 <i class="fad fa-comment"></i><span>|</span>Dec 17, 2020</h4>
+                                    <p class="paragraph dark">Suisque metus tortor ultricies ac ligula neced eleifend dales felise morbi nec tempor isvel ultricies lideula. </p>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <a href="blog.html" class="button">
+            <span>GO TO BLOG <i class="fad fa-long-arrow-right"></i></span>
+        </a>
+    </div>
+</section>
+<!--related blog section end-->
+
+<!--register section start-->
+<section class="register" id="register">
+    <div class="register__wrapper">
+        <div class="container">
+            <div class="row align-items-lg-center">
+                <div class="col-lg-6 px-5">
+                    <div class="register__info">
+                        <h2 class="section-heading color-black">Grab a chance to achive your goal.</h2>
+                        <form class="register__info--field" method="POST" action="" id="register-form">
+                            {% csrf_token %}
+                            <input type="text" name="name" placeholder="Name" required id="id_name" class="input-field">
+                                        <!-- <div class="select_mate input-field" data-mate-select="active">
+                            <select name="dream" id="dream" onchange="" onclick="return false;">
+                                <option value="null">--Dream To Be--</option>
+                                <option value="iitjee">IITian</option>
+                                <option value="neet">Doctor</option>
+                                <option value="other">Other</option>
+                            </select>
+                            <p class="selecionado_opcion" onclick="open_select(this)"></p><span onclick="open_select(this)" class="icon_select_mate"><svg fill="#000000" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M7.41 7.84L12 12.42l4.59-4.58L18 9.25l-6 6-6-6z" />
+                                <path d="M0-.75h24v24H0z" fill="none" />
+                                </svg></span>
+                            <div class="cont_list_select_mate">
+                                <ul class="cont_select_int"> </ul>
+                            </div>
+                            </div> -->
+                            <div class="custom-select select_mate input-field">
+                                <select name="dream" id="dream">
+                                    <option value="null">--Dream To Be--</option>
+                                    <option value="iitjee">IITian</option>
+                                    <option value="neet">Doctor</option>
+                                    <option value="other">Other</option>
+                                </select>
+                            </div>
+                            <input type="email" name="email" placeholder="Email" maxlength="254" required id="id_email" class="input-field">
+                            <input type="tel" name="mobile" placeholder="Mobile" maxlength="10" required id="id_mobile" class="input-field"> {% if messages %}
+                            <ul class="messages input-field">
+                                {% for message in messages %}
+                                <li {% if message.tags %} class=" {{ message.tags }} selecionado_opcion" {% endif %}> {{ message }} </li>
+                                {% endfor %}
+                            </ul>
+                            {% endif %}
+                            <button type="submit" class="button"><span>Grab it Now <i class="fad fa-long-arrow-right"></i></span></button>
+                        </form>
+
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <div class="register__img">
+                        <img src="{% static 'website_assets/images/register-img.png' %}" alt="image">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!--register section end-->
+{% endblock %}

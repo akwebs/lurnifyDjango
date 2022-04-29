@@ -1,0 +1,119 @@
+{% extends 'layouts/base-fullscreen.html' %}
+
+{% block title %} Sign UP {% endblock title %}
+
+<!-- Specific CSS goes HERE -->
+{% block stylesheets %}{% endblock stylesheets %}
+
+{% block content %}
+
+  <section>
+    <div class="page-header section-height-75">
+      <div class="container">
+        <div class="row">
+          <div class="col-xl-4 col-lg-5 col-md-6 d-flex flex-column mx-auto">
+            <div class="card card-plain mt-8">
+              <div class="card-header pb-0 text-left bg-transparent">
+                <h4 class="text-info text-gradient">
+                  Become Lurnify Members - Register Now
+                </h4>
+                <p class="mb-0">
+                    <div id="all-error">
+
+                    </div>              
+                </p>
+              </div>
+              <div class="card-body">
+                <form role="form text-left" method="post" action="">
+                  
+                  {% csrf_token %}
+                  
+                  <!-- phone number  -->
+                  <label>Phone</label>
+                  <div class="mb-3">
+                   <input type="tel" 
+                          name="reg_phone" class="form-control" 
+                          placeholder="Enter 10 Digit Phone Number"
+                          hx-post="/check-member-phone/" 
+                          hx-target="#phone-error" 
+                          hx-trigger="keyup delay:2s" 
+                          required
+                    />
+                  </div>
+
+                  <div class="mb-3">
+                    <div id="phone-error"></div>
+                  </div>
+
+                  <div class="m-3">
+                    <div id="otp-error"></div>
+                  </div>
+
+                  <!--Name   -->
+
+                  
+                  
+                  <label>Name </label>
+                  <div class="mb-3">
+                    <input type="text" name="name" placeholder="Enter Name" class="form-control"  required />
+                  </div>
+
+                  <!-- User Type  -->
+                  <label> User Type </label>
+                  <select class="form-select" name="type" 
+                  hx-get="{% url 'members:get-fields' %}"
+                  hx-trigger="change"
+                  hx-target="#user_type"
+                  required
+                  >
+                    <option value="select">Select Type</option>
+                   
+                    {% for m in members %}
+                    <option value="{{m.type_name}}">{{m.type_name}}</option>
+                    {% endfor %}
+                  </select>
+
+                  <div id="user_type" class="mb-3">
+                      {% include 'accounts/partials/type.html' %}
+                  </div>
+                  
+                  <div class="text-center">
+                    <button type="submit" name="" class="btn bg-gradient-info w-100 mt-4 mb-0">Sign UP</button>
+                  </div>
+                </form>
+              </div>
+              <div class="card-footer text-center pt-0 px-lg-2 px-1">
+                <p class="mb-4 text-sm mx-auto">
+                  Already have an account?
+                  <a href="" 
+                     class="text-info text-gradient font-weight-bold">Sign IN</a>
+                </p>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="oblique position-absolute top-0 h-100 d-md-block d-none me-n8">
+              <div class="oblique-image bg-cover position-absolute fixed-top ms-auto h-100 z-index-0 ms-n6" style="background-image:url('/static/members/assets/img/curved-images/curved6.jpg')"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+{% endblock content %}
+
+<!-- Specific JS goes HERE --> 
+{% block javascripts %}
+
+  <script>
+    var win = navigator.platform.indexOf('Win') > -1;
+    if (win && document.querySelector('#sidenav-scrollbar')) {
+      var options = {
+        damping: '0.5'
+      }
+      Scrollbar.init(document.querySelector('#sidenav-scrollbar'), options);
+    }
+  </script>
+
+{% endblock javascripts %}

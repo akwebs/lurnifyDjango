@@ -1,0 +1,31 @@
+{% extends 'web_base.html' %}
+{% load static %}
+{% block title %} Refund Policy | {% endblock title %}
+{% block css %}
+<style>
+
+    p, span{
+        font-size: 1.2rem;
+    }
+</style>
+{% endblock css %}
+{% block content %}
+<!-- wp:html -->
+<section class="hero">
+    <div class="hero__wrapper">
+        <div class="container">
+            <div class="tucupampam" style="z-index: 100;">
+            
+            
+                <h1>{{privacy_data.heading}}</h1>
+                <hr>
+                  {{privacy_data.description|safe}}
+           
+            
+              
+            </div>
+        </div>
+    </div>
+</section>
+<!-- /wp:html -->
+{% endblock %}
